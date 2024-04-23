@@ -1,0 +1,136 @@
+/* System */
+* {
+  padding: 0;
+  margin: 0;
+}
+
+::-webkit-scrollbar {
+  width: 0px;
+  height: 0px;
+}
+
+/* Login + Signup*/
+.login-bg {
+  width: 100vw;
+  height: 100vh;
+  background: rgb(172, 47, 51);
+  background: linear-gradient(
+    90deg,
+    rgba(172, 47, 51, 1) 25%,
+    rgba(53, 90, 161, 1) 80%,
+    rgba(35, 97, 178, 1) 100%
+  );
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.signup-bg {
+  width: 100vw;
+  height: 100vh;
+  background: rgb(172, 47, 51);
+  background: linear-gradient(
+    -90deg,
+    rgba(172, 47, 51, 1) 25%,
+    rgba(53, 90, 161, 1) 80%,
+    rgba(35, 97, 178, 1) 100%
+  );
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form {
+  width: 50%;
+  height: 90%;
+  max-width: 700px;
+  max-height: 500px;
+  background-color: #181818;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.form > h1 {
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+  color: white;
+  font-size: 3em;
+  margin-bottom: 7px;
+  letter-spacing: 2px;
+}
+
+.form > h5 {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  letter-spacing: 1.5px;
+  color: #62696b;
+}
+
+.field {
+  width: 45%;
+  height: 35px;
+  border-radius: 15px;
+  text-align: center;
+  background-color: #18181800;
+  border: 1.5px solid #6190b3;
+  margin-top: 20px;
+  color: white;
+}
+
+.field:focus {
+  outline: none;
+  border: 1.5px solid #37835d;
+  width: 60%;
+}
+
+.btn {
+  width: 22%;
+  height: 35px;
+  border-radius: 15px;
+  text-align: center;
+  background-color: #18181800;
+  border: 1.5px solid #37835d;
+  margin-top: 20px;
+  margin-bottom: 30px;
+  color: white;
+}
+
+.btn:hover {
+  cursor: pointer;
+  background-color: rgba(72, 73, 74, 0.2);
+}
+
+.instruments {
+  width: 90%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.instrument {
+  width: 90%;
+  height: 35px;
+  border-radius: 15px;
+  text-align: center;
+  background-color: #18181800;
+  border: 1.5px solid #6190b3;
+  margin-top: 20px;
+  margin-bottom: 30px;
+  color: white;
+}
+
+.instrument:hover {
+  cursor: pointer;
+  background-color: rgba(72, 73, 74, 0.2);
+}
+.instrument:active {
+  background-color: #18181800;
+}
+.clicked {
+  background-color: rgba(181, 181, 181, 0.2);
+}
