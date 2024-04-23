@@ -4,8 +4,14 @@ const Home = (props) => {
     const {apiUrl, user} = props;
 
     return (
-        <div>
-            <h1>{user.username}</h1>
+        <div className='hbg1'>
+            <div className='hbg2'>
+
+                <div className='home-container'>
+                    
+                </div>
+
+            </div>
         </div>
     );
 }

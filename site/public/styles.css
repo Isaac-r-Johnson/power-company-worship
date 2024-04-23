@@ -134,3 +134,49 @@
 .clicked {
   background-color: rgba(181, 181, 181, 0.2);
 }
+
+/* Home Page */
+.hbg1 {
+  width: 100vw;
+  height: 100vh;
+  background: rgb(172, 47, 51);
+  background: linear-gradient(
+    -90deg,
+    rgba(172, 47, 51, 1) 25%,
+    rgba(53, 90, 161, 1) 80%,
+    rgba(35, 97, 178, 1) 100%
+  );
+  display: flex;
+}
+
+@keyframes fadeInAnimation {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.hbg2 {
+  width: 100vw;
+  height: 100vh;
+  background-color: #18181893;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* animation: fadeInAnimation ease 2s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards; */
+}
+
+.home-container {
+  width: 95%;
+  height: 95%;
+  background-color: #181818;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  border-radius: 5px;
+  /* animation: fadeInAnimation forwards 3s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards; */
+}
