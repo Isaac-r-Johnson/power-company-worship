@@ -17,7 +17,7 @@ const Button = ({ name, onClick, selected }) => {
   };
 
 const Signup = (props) => {
-  const { apiUrl, onSignup } = props;
+  const { apiUrl, homePage, onSignup } = props;
 
   const [name, setName] = useState("");
   const [username, setUsername] = useState("");
@@ -47,8 +47,14 @@ const Signup = (props) => {
         onSignup({ username, password });
         setUsername("");
         setPassword("");
-      } else {
-        alert("Username or Password is incorrect!");
+        window.location.href = homePage;
+
+      } else if (res.data === "MULTI") {
+        alert("An account with that username already exists");
+        window.location.reload();
+      }
+      else {
+        alert("An error has occurred. Please try again later.");
       }
     } else {
         alert("Please fill out all fields!");

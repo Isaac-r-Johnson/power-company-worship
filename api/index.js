@@ -29,7 +29,7 @@ const userSchema = new mongoose.Schema({
   username: String,
   password: String,
   name: String,
-  skills: [String],
+  instruments: [String],
   days: [String],
 });
 const User = new mongoose.model("User", userSchema);
@@ -54,16 +54,25 @@ app.post("/login", async (req, res) => {
 });
 
 app.post("/signup", async (req, res) => {
-  const { name, username, password } = req.body;
-  const user = await User.insertMany([{
-    name: name,
-    username: username,
-    password: md5(password),
-    // Instruments
-  }]);
-  if (user) {
-    res.send("OK");
-  } else {
+  try {
+    const { name, username, password, instruments } = req.body;
+    const alreadyUser = await User.findOne({username: username});
+    if (!alreadyUser){
+        await User.insertMany([
+            {
+              name: name,
+              username: username,
+              password: md5(password),
+              instruments: instruments,
+              days: [],
+            },
+          ]);
+          res.send("OK");
+    }
+    else {
+        res.send("MULTI");
+    }
+  } catch (err) {
     res.send("NO");
   }
 });

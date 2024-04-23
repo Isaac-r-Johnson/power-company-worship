@@ -14,6 +14,7 @@ import Footer from "./Components/Footer";
 const App = () => {
   const [cookies, setCookie] = useCookies(["user"]);
   const apiUrl = "http://192.168.1.193:5000/";
+  const homePage = "http://192.168.1.193:3000/";
   const pages = ["", "login", "register"];
   const page = window.location.href.split("/")[3];
   var isFound = false;
@@ -48,7 +49,7 @@ const App = () => {
               </CookiesProvider>
             }
           />
-          <Route path="/register" element={<Signup apiUrl={apiUrl} onSignup={handleUser}/>} />
+          <Route path="/register" element={<Signup apiUrl={apiUrl} homePage={homePage} onSignup={handleUser}/>} />
         </Routes>
       ) : null}
 

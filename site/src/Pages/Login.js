@@ -62,6 +62,12 @@ const Login = (props) => {
         </h5>
 
         <input className="btn" type="button" value="Login" onClick={loginBtn} />
+
+        <h5 style={{ marginTop: "20px" }}>
+          <a style={{ color: "#62696b" }} href="/register">
+            Don't have an account?
+          </a>
+        </h5>
       </div>
     </div>
   );
