@@ -7,6 +7,8 @@ const Login = (props) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
+  const [loading, setLoading] = useState(false);
+
   const updateFields = (field, e) => {
     if (field === "username") {
       setUsername(e.target.value);
@@ -15,27 +17,40 @@ const Login = (props) => {
     }
   };
 
-  const loginBtn = async () => {
+  const loginBtn = () => {
     if (username !== "" && password !== "") {
-      const res = await axios.post(apiUrl + "login/", {
-        username: username,
-        password: password,
-      });
-      if (res.data === "OK") {
-        onLogin({username, password});
-        setUsername("");
-        setPassword("");
-      } else {
-        alert("Username or Password is incorrect!");
-      }
-    }
-    else {
-        alert("Please fill out all fields!");
+      setLoading(true);
+      setTimeout(() => {
+        axios
+          .post(apiUrl + "login/", {
+            username: username,
+            password: password,
+          })
+          .then((res) => {
+            if (res.data === "OK") {
+              setLoading(false);
+              onLogin({ username, password });
+              setUsername("");
+              setPassword("");
+            } else {
+              setLoading(false);
+              alert("Username or Password is incorrect!");
+            }
+          });
+      }, 1500);
+    } else {
+      alert("Please fill out all fields!");
     }
   };
 
   return (
     <div className="login-bg">
+      {loading ? (
+        <div className="loading-screen">
+          <div className="loader"></div>
+        </div>
+      ) : null}
+
       <div className="form">
         <h1>Login</h1>
         <h5>Please enter username and password</h5>

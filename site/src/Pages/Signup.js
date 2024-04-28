@@ -2,19 +2,19 @@ import React, { useState } from "react";
 import axios from "axios";
 
 const Button = ({ name, onClick, selected }) => {
-    const handleClick = () => {
-      onClick(name);
-    };
-  
-    return (
-      <input
-        className={`instrument ${selected.includes(name) ? "clicked" : ""}`}
-        type="button"
-        value={name}
-        onClick={handleClick}
-      />
-    );
+  const handleClick = () => {
+    onClick(name);
   };
+
+  return (
+    <input
+      className={`instrument ${selected.includes(name) ? "clicked" : ""}`}
+      type="button"
+      value={name}
+      onClick={handleClick}
+    />
+  );
+};
 
 const Signup = (props) => {
   const { apiUrl, homePage, onSignup } = props;
@@ -24,6 +24,8 @@ const Signup = (props) => {
   const [password, setPassword] = useState("");
   const [infoForm, setInfoForm] = useState(true);
   const [selectedInstruments, setSelectedInstruments] = useState([]);
+
+  const [loading, setLoading] = useState(false);
 
   const updateFields = (field, e) => {
     if (field === "name") {
@@ -36,29 +38,41 @@ const Signup = (props) => {
   };
 
   const signupBtn = async () => {
-    if (name !== "" && username !== "" && password !== "" && selectedInstruments.length > 0) {
-      const res = await axios.post(apiUrl + "signup/", {
-        name: name,
-        username: username,
-        password: password,
-        instruments: selectedInstruments
-      });
-      if (res.data === "OK") {
-        onSignup({ username, password });
-        setUsername("");
-        setPassword("");
-        window.location.href = homePage;
-
-      } else if (res.data === "MULTI") {
-        alert("An account with that username already exists");
-        window.location.reload();
-      }
-      else {
-        alert("An error has occurred. Please try again later.");
-      }
+    if (
+      name !== "" &&
+      username !== "" &&
+      password !== "" &&
+      selectedInstruments.length > 0
+    ) {
+      setLoading(true);
+      setTimeout(() => {
+        axios
+          .post(apiUrl + "signup/", {
+            name: name,
+            username: username,
+            password: password,
+            instruments: selectedInstruments,
+          })
+          .then((res) => {
+            if (res.data === "OK") {
+              setLoading(false);
+              onSignup({ username, password });
+              setUsername("");
+              setPassword("");
+              window.location.href = homePage;
+            } else if (res.data === "MULTI") {
+              setLoading(false);
+              alert("An account with that username already exists");
+              window.location.reload();
+            } else {
+              setLoading(false);
+              alert("An error has occurred. Please try again later.");
+            }
+          });
+      }, 1500);
     } else {
-        alert("Please fill out all fields!");
-        window.location.reload();
+      alert("Please fill out all fields!");
+      window.location.reload();
     }
   };
 
@@ -75,6 +89,12 @@ const Signup = (props) => {
 
   return (
     <div className="signup-bg">
+      {loading ? (
+        <div className="loading-screen">
+          <div className="loader"></div>
+        </div>
+      ) : null}
+
       {infoForm ? (
         <div className="form">
           <h1>Register</h1>
@@ -115,15 +135,51 @@ const Signup = (props) => {
           <h5>Please select your skills</h5>
 
           <div className="instruments">
-            <Button name="Acoustic Guitar" selected={selectedInstruments} onClick={select} />
-            <Button name="Electric Guitar" selected={selectedInstruments} onClick={select} />
-            <Button name="Vocals" selected={selectedInstruments} onClick={select} />
-            <Button name="Drums" selected={selectedInstruments} onClick={select} />
-            <Button name="Cajon" selected={selectedInstruments} onClick={select} />
-            <Button name="Base" selected={selectedInstruments} onClick={select} />
-            <Button name="Keyboard" selected={selectedInstruments} onClick={select} />
-            <Button name="Tech" selected={selectedInstruments} onClick={select} />
-            <Button name="Other" selected={selectedInstruments} onClick={select} />
+            <Button
+              name="Acoustic Guitar"
+              selected={selectedInstruments}
+              onClick={select}
+            />
+            <Button
+              name="Electric Guitar"
+              selected={selectedInstruments}
+              onClick={select}
+            />
+            <Button
+              name="Vocals"
+              selected={selectedInstruments}
+              onClick={select}
+            />
+            <Button
+              name="Drums"
+              selected={selectedInstruments}
+              onClick={select}
+            />
+            <Button
+              name="Cajon"
+              selected={selectedInstruments}
+              onClick={select}
+            />
+            <Button
+              name="Base"
+              selected={selectedInstruments}
+              onClick={select}
+            />
+            <Button
+              name="Keyboard"
+              selected={selectedInstruments}
+              onClick={select}
+            />
+            <Button
+              name="Tech"
+              selected={selectedInstruments}
+              onClick={select}
+            />
+            <Button
+              name="Other"
+              selected={selectedInstruments}
+              onClick={select}
+            />
           </div>
 
           <input
